@@ -3,6 +3,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Button, Box, Typography, Alert } from "@mui/material";
 import { createUser } from "../utils/api";
+
 interface RegisterFormInputs {
   name: string;
   email: string;
@@ -25,14 +26,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormInputs>();
+
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState<boolean>(false);
+
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     try {
       await createUser({ name: data.name, email: data.email, role: data.role });
       setSuccess(true);
       setError(null);
-      if (onSuccess) onSuccess();
+      if (onSuccess) onSuccess();//定型文で覚える
     } catch (err) {
       setError("ユーザーの登録に失敗しました。" + err);
       setSuccess(false);

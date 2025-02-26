@@ -1,6 +1,9 @@
+// utils/api.ts
+
 import { supabase } from './supabaseClient';
 import { User } from '../types/User';
 
+//ユーザーを取得する fetchUsers
 export const fetchUsers = async (): Promise<User[]> => {
   const { data, error } = await supabase
     .from<'dev_users', User>('dev_users') // テーブル名と型を2つ指定
@@ -12,6 +15,7 @@ export const fetchUsers = async (): Promise<User[]> => {
   return data as User[];
 };
 
+//idによってユーザーを取得
 export const fetchUserById = async (id: number): Promise<User | null> => {
   const { data, error } = await supabase
     .from<'dev_users', User>('dev_users')
@@ -29,6 +33,7 @@ export const fetchUserById = async (id: number): Promise<User | null> => {
   return data as User;
 };
 
+
 export const createUser = async (user: Omit<User, 'id' | 'deleted'>): Promise<User> => {
   const { data, error } = await supabase
     .from('dev_users')
@@ -42,6 +47,7 @@ export const createUser = async (user: Omit<User, 'id' | 'deleted'>): Promise<Us
 
   return data as User;
 };
+
 
 export const updateUser = async (id: number, user: Partial<User>): Promise<User> => {
   const { data, error } = await supabase
@@ -57,6 +63,7 @@ export const updateUser = async (id: number, user: Partial<User>): Promise<User>
 
   return data as User;
 };
+
 
 export const deleteUser = async (id: number): Promise<void> => {
   const { error } = await supabase

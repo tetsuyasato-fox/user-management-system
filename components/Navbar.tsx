@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
+
 const Navbar: React.FC = () => {
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -14,6 +16,9 @@ const Navbar: React.FC = () => {
         </Button>
         <Button color="inherit" component={Link} href="/users">
           ユーザー一覧
+        </Button>
+        <Button color="inherit" component={Link} href="/register">
+          新規登録
         </Button>
       </Toolbar>
     </AppBar>
