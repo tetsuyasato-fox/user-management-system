@@ -11,6 +11,7 @@ export const fetchUsers = async (): Promise<User[]> => {
 
   if (error) {
     throw error;
+  
   }
   return data as User[];
 };

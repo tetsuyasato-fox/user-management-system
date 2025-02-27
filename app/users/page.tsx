@@ -11,6 +11,9 @@ const UsersPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+//⼀覧ページにアクセスした際にユーザーの⼀覧が表⽰
+//・useEffectを使用して、APIで全データ取得
+//・try,catch構文で記述
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -24,8 +27,9 @@ const UsersPage: React.FC = () => {
       }
     };
 
+    
     getUsers();
-  }, []);
+  }, [])
 
   if (loading) {
     return <CircularProgress />;
