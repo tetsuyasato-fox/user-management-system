@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUsers } from '../../utils/api';
 import { User } from '../../types/User';
-import UserCard from '../../components/UserCard';
 import { Typography, CircularProgress, Alert, Box } from '@mui/material';
 import UserList from '@/components/UserList';
 
