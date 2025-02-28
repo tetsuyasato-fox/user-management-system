@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { User } from '../types/User'; 
-import UserCard from './UserCard';
+import React, { useState } from "react";
+import { User } from "../types/User";
+import UserCard from "./UserCard";
 
 // UserListPropsインターフェースの定義
 interface UserListProps {
@@ -9,11 +9,15 @@ interface UserListProps {
 
 const UserList: React.FC<UserListProps> = ({ initialUsers }) => {
   const [users, setUsers] = useState<User[]>(initialUsers);
+  // 削除処理実行後のフィルタリング関数
+  const handleUserDelete = (deletedUserId: number) => {
+    setUsers((prev) => prev.filter((user: User) => user.id !== deletedUserId));
+  };
   return (
     <div>
       <div>
         {users.map((user) => (
-          <UserCard key={user.id} user={user} />
+          <UserCard key={user.id} user={user} handleDelete={handleUserDelete} />
         ))}
       </div>
     </div>
@@ -21,4 +25,3 @@ const UserList: React.FC<UserListProps> = ({ initialUsers }) => {
 };
 
 export default UserList;
-
